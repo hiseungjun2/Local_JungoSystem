@@ -31,7 +31,7 @@
 				<p><strong>판매금액 : </strong><%=dto.getPrice()%></p>
 				<br>
 				<br>
-				<p>이미지 부분</p>
+				<p>이미지</p>
 				<br>
 				<br>
 				<p><strong>물품 내용</strong></p>
