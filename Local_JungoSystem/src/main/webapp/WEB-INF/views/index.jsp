@@ -1,13 +1,18 @@
+<%@page import="com.gntech.dto.orderDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
+<%
+	List<orderDTO> list = (List)request.getAttribute("list");
+%>
 <div class="container">
 	<div id="basic_table">
 		<div class="container-body">
 			<h2>신청내역</h2>
 			<!----------------------------------------------------테이블 생성----------------------------------------------->
 			<div>
-				<table id="notice" class="table table-striped table-hover">
+				<table id="index" class="table table-striped table-hover">
 					<thead>
 						<tr>
 							<td class="col-md-1">번호</td>
@@ -18,13 +23,15 @@
 						</tr>
 					</thead>
 					<tbody>
+					<%for (orderDTO dto : list) { %>
 						<tr style="cursor: pointer;">
-							<td id="" class="col-md-1">1</td>
-							<td id="" class="col-md-2">20181018_121324</td>
-							<td id="" class="col-md-5">아이폰8</td>
-							<td id="" class="col-md-2">김승준</td>
-							<td id="" class="col-md-1">80000</td>
+							<td id="<%=dto.getId() %>" class="col-md-1"><%=dto.getId() %></td>
+							<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getOrder_num() %></td>
+							<td id="<%=dto.getId() %>" class="col-md-5"><%=dto.getPro_name() %></td>
+							<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getOrder_name() %></td>
+							<td id="<%=dto.getId() %>" class="col-md-1"><%=dto.getPrice() %></td>
 						</tr>
+					<% } %>
 					</tbody>
 				</table>
 			</div>
@@ -44,7 +51,7 @@
 	</div>
 </div>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="js/homeJquery.js?ver=1"></script>
-<script src="js/bootstrap.min.js"></script>
+<script src="resources/js/indexJquery.js?ver=12"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 </body>
 </html>
