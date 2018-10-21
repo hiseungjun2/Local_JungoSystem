@@ -10,7 +10,7 @@ import com.gntech.dto.orderDTO;
 
 @Repository("indexDAO")
 public class IndexDAO {
-	
+
 	@Autowired
 	private SqlSessionFactory sqlSessionFactory;
 
@@ -24,6 +24,18 @@ public class IndexDAO {
 	public orderDTO SelectIndex(int id) {
 		orderDTO dto = sqlSessionFactory.openSession().selectOne("usernamespace.SelectIndex", id);
 		return dto;
+	}
+
+	// 신청내역 수락
+	public int CheckYIndex(int id) {
+		int n = sqlSessionFactory.openSession().update("usernamespace.CheckYIndex", id);
+		return n;
+	}
+
+	// 신청내역 거절
+	public int CheckNIndex(int id) {
+		int n = sqlSessionFactory.openSession().update("usernamespace.CheckNIndex", id);
+		return n;
 	}
 
 }

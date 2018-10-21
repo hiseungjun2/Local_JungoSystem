@@ -13,8 +13,19 @@
 	
 	<!-- 신청내역 조회 -->
 	<select id="SelectIndex" resultType="order" parameterType="Integer">
-		SELECT * FROM order_tb WHERE ID = #{id}
+		SELECT * FROM order_tb WHERE id = #{id}
 	</select>
+	
+	<!-- 신청내역 수락 -->
+	<update id="CheckYIndex" parameterType="Integer">
+		UPDATE order_tb SET checkYN = 'Y', status = '진행중' WHERE id = #{ID}
+	</update>
+	
+	<!-- 신청내역 거절 -->
+	<update id="CheckNIndex" parameterType="Integer">
+		UPDATE order_tb SET checkYN = 'N', status = '거절' WHERE id = #{ID}
+	</update>
+	
 	
 	
 </mapper>

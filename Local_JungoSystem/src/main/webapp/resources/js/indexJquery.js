@@ -6,15 +6,12 @@ $(document).ready(function() {
 		var num = $(this).attr('id');
 		$(location).attr("href", "indexInfo?id="+num);
 	})
-	$("#back").click(function() {
-		var current = Number($("h3").attr('id'))-1;
-		$(location).attr("href", "/jungonara/noticelistinfo?num="+current);
+	$("#checkY").click(function() {
+		var num = $("h2").attr('id');
+		$(location).attr("href", "checkY?id="+num);
 	})
-	$("#next").click(function() {
-		var current = Number($("h3").attr('id'))+1;
-		$(location).attr("href", "/jungonara/noticelistinfo?num="+current);
-	})
-	$("#backList").click(function() {
-		$(location).attr("href", "/jungonara/noticelist?pageNum=1");
+	$("#checkN").click(function() {
+		var num = $("h2").attr('id');
+		$(location).attr("href", "checkN?id="+num);
 	})
 })

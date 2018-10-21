@@ -37,4 +37,34 @@ public class IndexController {
 		return new ModelAndView("index_info", "select", indexService.SelectIndex(id));
 	}
 	
+	// 신청내역 수락
+	@RequestMapping(value="/checkY", method=RequestMethod.GET)
+	public String CheckYIndex(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("id"));
+		System.out.println("CheckY 호출");
+		int n = indexService.CheckYIndex(id);
+		if (n > 0) {
+			System.out.println("CheckY 성공");
+			return "redirect:/index";
+		} else {
+			System.out.println("CheckY 실패");
+			return "redirect:/index";
+		}
+	}
+	
+	// 신청내역 거절
+		@RequestMapping(value="/checkN", method=RequestMethod.GET)
+		public String CheckNIndex(HttpServletRequest request) {
+			int id = Integer.parseInt(request.getParameter("id"));
+			System.out.println("CheckN 호출");
+			int n = indexService.CheckNIndex(id);
+			if (n > 0) {
+				System.out.println("CheckN 성공");
+				return "redirect:/index";
+			} else {
+				System.out.println("CheckN 실패");
+				return "redirect:/index";
+			}
+		}
+	
 }
