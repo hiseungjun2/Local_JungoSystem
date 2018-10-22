@@ -27,8 +27,13 @@ public class IndexDAO {
 	}
 
 	// 신청내역 수락
-	public int CheckYIndex(int id) {
-		int n = sqlSessionFactory.openSession().update("usernamespace.CheckYIndex", id);
+	public int CheckYIndex(orderDTO dto, int i) {
+		int n = 0;
+		if (i == 1) {		// 금액 변동이 없으면 (진행중)
+			n = sqlSessionFactory.openSession().update("usernamespace.CheckYIndex", dto);
+		} else {		// 금액 변동이 있으면 (매입가검토중)
+			n = sqlSessionFactory.openSession().update("usernamespace.CheckYIndexPrice", dto);
+		} 
 		return n;
 	}
 

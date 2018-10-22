@@ -10,21 +10,29 @@
 <div class="container">
 	<div id="basic_table">
 		<div class="container-body">
-			<h2 id="<%=dto.getId()%>">신청조회</h2>
+			<h2 id="<%=dto.getId()%>">신청조회</h2><br><br>
 			<!------------------------- 상단 버튼 (수락 / 거절) ------------------------------>
 			<div class="pull-right">
-				<button type="button" id="checkY" class="btn btn-success">수거수락</button>
-				<button type="button" id="checkN" class="btn btn-danger">수거취소</button>
+				<form class="form-inline" action="checkY" style="margin-bottom : 5px;">
+					<div class="form-group">
+						<button type="submit" class="btn btn-success">금액 제안</button>
+						<input type="hidden" name="price" value="<%=dto.getPrice() %>">
+						<input type="hidden" name="id" value="<%= dto.getId()%>">
+						<input type="text" class="form-control" name="return_price" value="<%=dto.getPrice()%>">
+					</div>				
+				</form>
+				<form action="checkN">
+					<div class="form-group">
+						<input type="hidden" name="id" value="<%= dto.getId()%>">	
+						<button type="submit" class="btn btn-danger">구매 취소</button>
+					</div>				
+				</form> 
 			</div>
-			<br>
-			<br>
 			<!------------------------------------------------------------------------------>
 			<%-- <h3 id="<%=dto.getId()()%>"><%=dto.getBuy_title()%></h3> --%>
-			<p id="orderDate" class="text-right">
-				작성일 : <strong><%=dto.getOrder_date()%></strong>
-			</p>
-			<br>
 			<div id="contents">
+				<p>
+					<strong>작성일 : </strong><%=dto.getOrder_date()%></p>
 				<p>
 					<strong>주문번호 : </strong><%=dto.getOrder_num()%></p>
 				<p>
@@ -32,7 +40,7 @@
 				<p>
 					<strong>작성자 휴대폰 : </strong><%=dto.getOrder_phone()%></p>
 				<p>
-					<strong>물품명 </strong><%=dto.getPro_name()%></p>
+					<strong>물품명 : </strong><%=dto.getPro_name()%></p>
 				<p>
 					<strong>판매금액 : </strong><%=dto.getPrice()%></p>
 				<br> <br>
@@ -48,5 +56,6 @@
 </div>
 </body>
 <!-- 커스텀 Jquery 파일 선언 -->
-<script src="resources/js/indexJquery.js?ver=123"></script>
+<script src="resources/js/indexJquery.js?ver=12"></script>
+<script src="resources/js/bootstrap.min.js"></script>
 </html>

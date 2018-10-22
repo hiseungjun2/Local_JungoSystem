@@ -4,7 +4,7 @@
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
 <%
-	List<orderDTO> list = (List)request.getAttribute("list");
+	List<orderDTO> list = (List<orderDTO>)request.getAttribute("list");
 %>
 <div class="container">
 	<div id="basic_table">

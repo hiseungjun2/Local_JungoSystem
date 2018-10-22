@@ -1,6 +1,11 @@
+<%@page import="com.gntech.dto.orderDTO"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="header.jsp"%>
+<%
+	List<orderDTO> list = (List)request.getAttribute("list");
+%>
 <body>
 	<div class="container">
 		<div id="basic_table">
@@ -19,26 +24,32 @@
 							</tr>
 						</thead>
 						<tbody>
+						<% for(orderDTO dto : list) { 
+								if (dto.getStatus().equals("거래완료")) {%>
 							<tr style="cursor: pointer;">
-								<td id="" class="col-md-1">1</td>
-								<td id="" class="col-md-2">20181018_123123</td>
-								<td id="" class="col-md-2">김승준</td>
-								<td id="" class="col-md-3">아이폰8</td>
-								<td id="" class="col-md-1">80000</td>
-								<td id="" class="col-md-2">거래완료</td>
+								<td id="<%=dto.getId() %>" class="col-md-1"><%=dto.getId() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getOrder_num() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getOrder_name() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-3"><%=dto.getPro_name() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-1"><%=dto.getPrice() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getStatus() %></td>
 							</tr>
+							<% }
+								} %>
 						</tbody>
 					</table>
 					<div>
 						<nav style="display: inline">
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+								<li><a href="#" aria-label="Previous"><span
+										aria-hidden="true">&laquo;</span></a></li>
 								<%-- <% for(int i = 1; i<=Math.ceil(sbcount/5.0);i++) { %>
 								<li><a href="/jungonara/mypagelist?sbpageNum=1&buypageNum=<%=i%>&id=<%=id %>"><%=i %></a></li>
 								<!-- 페이지네이션 선언 -->
 								<%} %> --%>
 								<li><a href="">1</a></li>
-								<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+								<li><a href="#" aria-label="Next"><span
+										aria-hidden="true">&raquo;</span></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -57,26 +68,32 @@
 							</tr>
 						</thead>
 						<tbody>
+							<% for(orderDTO dto : list) { 
+								if (dto.getStatus().equals("거래취소")) {%>
 							<tr style="cursor: pointer;">
-								<td id="" class="col-md-1">2</td>
-								<td id="" class="col-md-2">20181017_123123</td>
-								<td id="" class="col-md-2">김상범</td>
-								<td id="" class="col-md-3">맥북 2018년형</td>
-								<td id="" class="col-md-1">250000</td>
-								<td id="" class="col-md-2">거래취소</td>
+								<td id="<%=dto.getId() %>" class="col-md-1"><%=dto.getId() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getOrder_num() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getOrder_name() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-3"><%=dto.getPro_name() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-1"><%=dto.getPrice() %></td>
+								<td id="<%=dto.getId() %>" class="col-md-2"><%=dto.getStatus() %></td>
 							</tr>
+							<% }
+								} %>
 						</tbody>
 					</table>
 					<div>
 						<nav style="display: inline">
 							<ul class="pagination">
-								<li><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+								<li><a href="#" aria-label="Previous"><span
+										aria-hidden="true">&laquo;</span></a></li>
 								<%-- <% for(int i = 1; i<=Math.ceil(sbcount/5.0);i++) { %>
 								<li><a href="/jungonara/mypagelist?sbpageNum=1&buypageNum=<%=i%>&id=<%=id %>"><%=i %></a></li>
 								<!-- 페이지네이션 선언 -->
 								<%} %> --%>
 								<li><a href="">1</a></li>
-								<li><a href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>
+								<li><a href="#" aria-label="Next"><span
+										aria-hidden="true">&raquo;</span></a></li>
 							</ul>
 						</nav>
 					</div>
@@ -86,7 +103,7 @@
 	</div>
 </body>
 <!-- 커스텀 Jquery 파일 선언 -->
-<script src="resources/js/mypageJquery.js?ver=1"></script>
+<script src="resources/js/resultJquery.js?ver=1"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 </html>

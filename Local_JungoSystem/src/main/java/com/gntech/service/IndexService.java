@@ -30,8 +30,8 @@ public class IndexService {
 	}
 
 	// 신청내역 수락
-	public int CheckYIndex(int id) {
-		return indexDAO.CheckYIndex(id);
+	public int CheckYIndex(orderDTO dto, int i) {
+		return indexDAO.CheckYIndex(dto, i);
 	}
 
 	// 신청내역 거절
