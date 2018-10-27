@@ -33,6 +33,10 @@
 	</update>
 	<!-- ************************************************************ -->
 	
+	
+	
+	
+	
 	<!-- ************************check******************************** -->
 	<!-- 진행중인 상태 리스트 -->
 	<select id="ListCheck" resultType="order">
@@ -48,7 +52,18 @@
 	<update id="InsertMemo" parameterType="order">
 		UPDATE order_tb SET memo = #{memo} WHERE id = #{id}
 	</update>
+	
+	<!-- 검토내역 수거완료 -->
+	<update id="UpdateResult" parameterType="Integer">
+		UPDATE order_tb SET status = '거래완료' WHERE id = #{id}
+	</update>
 	<!-- ************************************************************ -->
+	
+	
+	
+	
+	
+	
 	
 	<!-- ************************result******************************** -->
 	<!-- 결과내역 리스트 -->
@@ -56,6 +71,44 @@
 		SELECT * FROM order_tb WHERE status = '거래취소' OR status = '거래완료' ORDER BY id DESC
 	</select>
 	<!-- ************************************************************ -->
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- ************************mobile******************************* -->
+	<!-- 모바일 사용자 거래내역 조회 -->
+	<select id="ListMobile" resultType="order" parameterType="order">
+		SELECT * FROM order_tb WHERE order_name = #{order_name} AND order_phone = #{order_phone} ORDER BY id DESC
+	</select>
+	
+	<!-- 게시판 글 갯수 카운트-->
+	<select id="CountMobile" resultType="Integer">
+		SELECT COUNT(*) FROM order_tb
+	</select>
+	
+	<!-- 사용자 판매물품 등록 (insert) -->
+	<insert id="InsertMobile" parameterType="order">
+		INSERT INTO order_tb (order_num, image, pro_name, pro_content, price, checkYN, status,
+											order_name, order_phone, order_address, order_date, return_price)
+		VALUES (#{order_num}, #{image}, #{pro_name}, #{pro_content}, #{price}, #{checkYN}, #{status},
+						#{order_name}, #{order_phone}, #{order_address}, #{order_date}, #{return_price})
+	</insert>
+	
+	<!-- 회사가 제시한 판매금액 사용자 승인 (update) -->
+	<update id="UpdateMobile" parameterType="order">
+		UPDATE order_tb SET checkYN = #{checkYN}, status = #{status} WHERE id = #{id}
+	</update>
+	<!-- ************************************************************ -->
+	
+	
+	
+	
+	
+	
 	
 	
 </mapper>

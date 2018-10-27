@@ -55,7 +55,19 @@ public class CheckController {
 			System.out.println("Insert 실패");
 			return "redirect:/check";
 		}
-
+	}
+	
+	// 수거완료 
+	@RequestMapping(value="/ResultStatus", method=RequestMethod.GET) 
+	public String UpdateResult(HttpServletRequest request) {
+		System.out.println("UpdateResult 호출");
+		int id = Integer.parseInt(request.getParameter("id"));
+		int n = checkService.UpdateResult(id);
+		if (n > 0) {
+			return "redirect:/result";
+		} else {
+			return "redirect:/result";
+		}
 	}
 
 }
