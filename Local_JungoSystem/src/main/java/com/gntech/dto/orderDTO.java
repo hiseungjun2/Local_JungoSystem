@@ -4,7 +4,7 @@ public class orderDTO {
 
 	private int id; // 게시글 번호
 	private String order_num; // 주문번호
-	private String image; // 이미지 파일 이름
+//	private String image; // 이미지 파일 이름
 	private String pro_name; // 상품명
 	private String pro_content; // 상품내용
 	private int price; // 상품 가격
@@ -23,7 +23,7 @@ public class orderDTO {
 		super();
 		this.id = id;
 		this.order_num = order_num;
-		this.image = image;
+//		this.image = image;
 		this.pro_name = pro_name;
 		this.pro_content = pro_content;
 		this.price = price;
@@ -58,13 +58,13 @@ public class orderDTO {
 		this.order_num = order_num;
 	}
 
-	public String getImage() {
-		return image;
-	}
-
-	public void setImage(String image) {
-		this.image = image;
-	}
+//	public String getImage() {
+//		return image;
+//	}
+//
+//	public void setImage(String image) {
+//		this.image = image;
+//	}
 
 	public String getPro_name() {
 		return pro_name;

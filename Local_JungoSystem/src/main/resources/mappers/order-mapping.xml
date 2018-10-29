@@ -8,8 +8,13 @@
 	
 	<!-- ************************index************************** -->
 	<!-- 전체리스트 -->
-	<select id="ListIndex" resultType="order">
-		SELECT * FROM order_tb WHERE checkYN = 'N' and status = '검토중' ORDER BY id DESC
+	<select id="ListIndex" resultType="order" parameterType="hashmap">
+		SELECT * FROM order_tb WHERE checkYN = 'N' and status = '검토중' ORDER BY id DESC LIMIT #{start}, #{end}
+	</select>
+	
+	<!-- 신청내역 글 갯수 카운트 -->
+	<select id="SelectIndexCount" resultType="Integer">
+		SELECT COUNT(*) FROM order_tb WHERE checkYN = 'N' and status = '검토중'
 	</select>
 	
 	<!-- 신청내역 조회 -->
@@ -39,8 +44,13 @@
 	
 	<!-- ************************check******************************** -->
 	<!-- 진행중인 상태 리스트 -->
-	<select id="ListCheck" resultType="order">
-		SELECT * FROM order_tb WHERE status = '진행중' OR status = '매입가검토중' ORDER BY id DESC
+	<select id="ListCheck" resultType="order" parameterType="hashmap">
+		SELECT * FROM order_tb WHERE status = '진행중' OR status = '매입가검토중' ORDER BY id DESC LIMIT #{start}, #{end}
+	</select>
+	
+	<!-- 신청내역 글 갯수 카운트 -->
+	<select id="SelectCheckCount" resultType="Integer">
+		SELECT COUNT(*) FROM order_tb WHERE status = '진행중' OR status = '매입가검토중'
 	</select>
 	
 	<!-- 검토내역 상세조회 -->
@@ -92,16 +102,20 @@
 	
 	<!-- 사용자 판매물품 등록 (insert) -->
 	<insert id="InsertMobile" parameterType="order">
-		INSERT INTO order_tb (order_num, image, pro_name, pro_content, price, checkYN, status,
+		ALTER TABLE order_tb AUTO_INCREMENT=1;
+		SET @COUNT = 0;
+		UPDATE order_tb SET id = @COUNT:=@COUNT+1;
+		INSERT INTO order_tb (order_num, pro_name, pro_content, price, checkYN, status,
 											order_name, order_phone, order_address, order_date, return_price)
-		VALUES (#{order_num}, #{image}, #{pro_name}, #{pro_content}, #{price}, #{checkYN}, #{status},
-						#{order_name}, #{order_phone}, #{order_address}, #{order_date}, #{return_price})
+		VALUES (#{order_num}, #{pro_name}, #{pro_content}, #{price}, #{checkYN}, #{status},
+						#{order_name}, #{order_phone}, #{order_address}, now(), #{return_price})
 	</insert>
 	
 	<!-- 회사가 제시한 판매금액 사용자 승인 (update) -->
 	<update id="UpdateMobile" parameterType="order">
 		UPDATE order_tb SET checkYN = #{checkYN}, status = #{status} WHERE id = #{id}
 	</update>
+	
 	<!-- ************************************************************ -->
 	
 	

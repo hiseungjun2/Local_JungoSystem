@@ -1,5 +1,6 @@
 package com.gntech.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,9 +16,18 @@ public class IndexDAO {
 	private SqlSessionFactory sqlSessionFactory;
 
 	// 신청현황 리스트
-	public List<orderDTO> ListIndex() {
-		List<orderDTO> list = sqlSessionFactory.openSession().selectList("usernamespace.ListIndex");
+	public List<orderDTO> ListIndex(int startRow, int pageSize) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		map.put("start", startRow-1);
+		map.put("end", pageSize);
+		List<orderDTO> list = sqlSessionFactory.openSession().selectList("usernamespace.ListIndex", map);
 		return list;
+	}
+	
+	// 신청현황 글 갯수
+	public int SelectIndexCount() {
+		int n = sqlSessionFactory.openSession().selectOne("usernamespace.SelectIndexCount");
+		return n;
 	}
 
 	// 신청내역 상세조회

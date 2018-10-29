@@ -1,3 +1,5 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
 <%@page import="com.gntech.dto.orderDTO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -6,6 +8,9 @@
 	request.setCharacterEncoding("UTF-8");
 	orderDTO dto = (orderDTO) request.getAttribute("select");
 	/* int count = (int) request.getAttribute("buycount"); */
+	Date date = new Date();
+	SimpleDateFormat format = new SimpleDateFormat("yyyyMMdd");
+	String strDate = format.format(date);
 %>
 <div class="container">
 	<div id="basic_table">
@@ -44,12 +49,17 @@
 				<p>
 					<strong>판매금액 : </strong><%=dto.getPrice()%></p>
 				<br> <br>
-				<p>이미지</p>
-				<br> <br>
 				<p>
 					<strong>물품 내용</strong>
 				</p>
-				<p><%=dto.getPro_content()%></p>
+				<p class="lead"><%=dto.getPro_content()%></p>
+				<br> <br>
+				<div class="row">
+					<div class="col-md-8">
+						<img src="http://localhost:3000/img/<%=strDate %>/<%=dto.getOrder_num() %>.jpg" class="img-responsive img-rounded">
+					</div>
+				</div>
+				<br> <br>
 			</div>
 		</div>
 	</div>

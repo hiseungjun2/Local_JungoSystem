@@ -25,9 +25,30 @@ public class CheckController {
 
 	// 진행중인 상태 리스트
 	@RequestMapping(value = "/check", method = RequestMethod.GET)
-	public ModelAndView ListCheck() {
+	public ModelAndView ListCheck(HttpServletRequest request) {
 		System.out.println("ListCheck 호출");
-		return new ModelAndView("check", "list", checkService.ListCheck());
+		int currentPage = Integer.parseInt(request.getParameter("pageNum"));
+		int pageSize = 12;
+		int count = 0;
+		count = checkService.SelectCheckCount();
+
+		if (count == (currentPage - 1) * pageSize) {
+			currentPage -= 1;
+		}
+		
+		int startRow = (currentPage -1) * pageSize +1;	// 현재 페이지의 시작글 번호
+		
+		if (startRow < 0) {
+			startRow = 1;
+		}
+		
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("check");
+		mav.addObject("list", checkService.ListCheck(startRow, pageSize));
+		mav.addObject("count", count);
+		
+		return mav;
+		
 	}
 
 	// 검토내역 상세조회
@@ -50,10 +71,10 @@ public class CheckController {
 		int n = checkService.InsertMemo(dto);
 		if (n > 0) {
 			System.out.println("Insert 성공");
-			return "redirect:/check";
+			return "redirect:/check?pageNum=1";
 		} else {
 			System.out.println("Insert 실패");
-			return "redirect:/check";
+			return "redirect:/check?pageNum=1";
 		}
 	}
 	

@@ -20,8 +20,13 @@ public class IndexService {
 	}
 
 	// 신청현황
-	public List<orderDTO> ListIndex() {
-		return indexDAO.ListIndex();
+	public List<orderDTO> ListIndex(int startRow, int pageSize) {
+		return indexDAO.ListIndex(startRow, pageSize);
+	}
+	
+	// 신청현황 글 갯 수
+	public int SelectIndexCount() {
+		return indexDAO.SelectIndexCount();
 	}
 
 	// 상세조회
