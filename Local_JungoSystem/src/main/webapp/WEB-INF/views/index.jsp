@@ -35,7 +35,7 @@
 						<%} else { 
 							for (orderDTO dto : list) {
 						%>
-						<tr style="cursor: pointer;">
+						<tr style="cursor: pointer;" class="data">
 							<td id="<%=dto.getId()%>" class="col-md-1"><%=dto.getId()%></td>
 							<td id="<%=dto.getId()%>" class="col-md-2"><%=dto.getOrder_num()%></td>
 							<td id="<%=dto.getId()%>" class="col-md-5"><%=dto.getPro_name()%></td>
@@ -68,7 +68,7 @@
 </div>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script src="resources/js/indexJquery.js?ver=12"></script>
+<script src="resources/js/indexJquery.js?ver=13"></script>
 <script src="resources/js/bootstrap.min.js"></script>
 </body>
 </html>

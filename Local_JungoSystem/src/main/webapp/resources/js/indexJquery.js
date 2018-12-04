@@ -2,7 +2,7 @@
  * 
  */
 $(document).ready(function() {
-	$("#index tbody tr td").click(function() {
+	$("#index tbody .data td").click(function() {
 		var num = $(this).attr('id');
 		$(location).attr("href", "indexInfo?id="+num);
 	})

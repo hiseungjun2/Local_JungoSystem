@@ -40,7 +40,7 @@
 			<ul class="nav navbar-nav">
 				<li id=""><a href="index?pageNum=1" id="order_btn">신청조회</a></li>
 				<li id=""><a href="check?pageNum=1" id="check_btn">검토조회</a></li>
-				<li id=""><a href="result?pageNum=1" id="result_btn">완료조회</a></li>
+				<li id=""><a href="result?pageNum=1&CancelpageNum=1" id="result_btn">완료조회</a></li>
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				<li><a>관리자님 안녕하세요</a></li>

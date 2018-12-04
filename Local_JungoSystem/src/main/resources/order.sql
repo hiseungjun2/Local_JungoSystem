@@ -24,8 +24,8 @@ ALTER TABLE order_tb AUTO_INCREMENT=1;
 SET @COUNT = 0;
 UPDATE order_tb SET id = @COUNT:=@COUNT+1;
 
-insert into order_tb (order_num, image, pro_name, pro_content, price, status, memo, order_name, order_phone, order_address, order_date, checkYN)
-values ('20181019_123123', '20181019_123123_9738',
+insert into order_tb (order_num, pro_name, pro_content, price, status, memo, order_name, order_phone, order_address, order_date, checkYN)
+values ('20181019_123123',
 			'아이폰', '아이폰팝니다팝니다팝니다', 80000, 
 			'검토중', '', '김승준', '010-1111-1111', '경남 진주시 칠암동', now(), 'N');
 insert into order_tb (order_num, image, pro_name, pro_content, price, status, memo, order_name, order_phone, order_address, order_date, checkYN)
